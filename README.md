@@ -16,7 +16,8 @@ Working:
 What's not working:
 
 * Colour depths other than 32-bit RGBA
-* Blend ops other than default
+* Many blend ops
+* Layer opacity
 * Data region lengths larger than max 32-bit signed int
 * NRBF class records with no type information
 

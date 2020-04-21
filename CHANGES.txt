@@ -1,4 +1,10 @@
 
+v0.1.1
+
+- Added Xor blend mode
+- Bugfix: was hard-coding layer index in flattening code
+- Bugfix: was hard-coding image width in blending code
+
 v0.1
 
 - Initial version.

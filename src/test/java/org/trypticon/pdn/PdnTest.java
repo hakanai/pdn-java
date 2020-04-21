@@ -15,6 +15,7 @@ public class PdnTest {
         Pdn pdn = Pdn.readFrom(Resources.asByteSource(resource));
 
         BufferedImage image = pdn.getDocument().toBufferedImage();
-        Icon icon = new ImageIcon(image);System.out.println("How are we doing?");
+        Icon icon = new ImageIcon(image);
+        System.out.println("How are we doing?");
     }
 }

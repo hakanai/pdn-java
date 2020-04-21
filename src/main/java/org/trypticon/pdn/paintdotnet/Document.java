@@ -72,7 +72,11 @@ public class Document {
             for (Layer layer : layers) {
                 BufferedImage layerImage = layer.toBufferedImage();
 
-                // TODO: Blend mode certainly matters and isn't being considered yet.
+                // TODO: Still ignoring opacity value, but might not be hard to add?
+                // layer.getProperties().getOpacity()
+                Composite composite = layer.getProperties().getBlendMode().createComposite();
+                graphics.setComposite(composite);
+
                 graphics.drawImage(layerImage, 0, 0, null);
             }
         } finally {

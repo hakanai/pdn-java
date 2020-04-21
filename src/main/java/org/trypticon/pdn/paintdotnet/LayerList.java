@@ -21,7 +21,7 @@ public class LayerList extends ArrayList<BitmapLayer> {
         int size = ((Number) map.get("ArrayList+_size")).intValue();
         List<Object> items = ((ArraySingleObject) map.get("ArrayList+_items")).getMembers();
         for (int i = 0; i < size; i++) {
-            add(new BitmapLayer((NrbfClassRecord) items.get(0)));
+            add(new BitmapLayer((NrbfClassRecord) items.get(i)));
         }
     }
 

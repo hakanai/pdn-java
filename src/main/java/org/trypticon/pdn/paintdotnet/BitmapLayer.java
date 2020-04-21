@@ -35,11 +35,12 @@ public class BitmapLayer extends Layer {
         BufferedImage image = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
 
         int width = surface.getWidth();
+        int height = surface.getHeight();
         int stride = surface.getStride();
         ByteBuffer data = surface.getScan0().getData();
 
         int[] intArray = new int[width];
-        for (int y = 0; y < 512; y++) {
+        for (int y = 0; y < height; y++) {
             // TODO: Assuming BPP here, probably not ideal.
             IntBuffer intData = data.position(y * stride).order(ByteOrder.LITTLE_ENDIAN).asIntBuffer();
             intData.get(intArray);
@@ -50,14 +51,27 @@ public class BitmapLayer extends Layer {
     }
 
     public static class BitmapLayerProperties {
-        private final UserBlendOps.NormalBlendOp blendOp;
+        private final UserBlendOps.BlendOp blendOp;
 
         public BitmapLayerProperties(NrbfClassRecord record) {
             Map<String, Object> map = record.asMap();
-            blendOp = new UserBlendOps.NormalBlendOp((NrbfClassRecord) map.get("blendOp"));
+            NrbfClassRecord blendOpRecord = (NrbfClassRecord) map.get("blendOp");
+
+            // XXX: A factory pattern should be put in place here.
+            switch (blendOpRecord.getMetadata().getName()) {
+                case "PaintDotNet.UserBlendOps+NormalBlendOp":
+                    blendOp = new UserBlendOps.NormalBlendOp(blendOpRecord);
+                    break;
+                case "PaintDotNet.UserBlendOps+XorBlendOp":
+                    blendOp = new UserBlendOps.XorBlendOp(blendOpRecord);
+                    break;
+                default:
+                    throw new UnsupportedOperationException("Unsupported blend op: " +
+                            blendOpRecord.getMetadata().getName());
+            }
         }
 
-        public UserBlendOps.NormalBlendOp getBlendOp() {
+        public UserBlendOps.BlendOp getBlendOp() {
             return blendOp;
         }
     }
