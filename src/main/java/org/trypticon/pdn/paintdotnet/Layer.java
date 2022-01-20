@@ -68,7 +68,12 @@ public abstract class Layer {
             visible = (boolean) map.get("visible");
             background = (boolean) map.get("isBackground");
             opacity = (UnsignedInteger) map.get("opacity");
-            blendMode = new LayerBlendMode((NrbfClassRecord) map.get("blendMode"));
+
+            if (map.get("blendMode") != null) {
+                blendMode = new LayerBlendMode((NrbfClassRecord) map.get("blendMode"));
+            } else {
+                blendMode = new LayerBlendMode();
+            }
         }
 
         public String getName() {

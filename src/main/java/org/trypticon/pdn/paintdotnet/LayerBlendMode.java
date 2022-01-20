@@ -13,6 +13,12 @@ import java.util.Map;
 public class LayerBlendMode {
     private final int value;
 
+    private static final int DEFAULT_BLEND_MODE = 0;
+
+    public LayerBlendMode() {
+        value = DEFAULT_BLEND_MODE;
+    }
+
     public LayerBlendMode(NrbfClassRecord record) {
         Map<String, Object> map = record.asMap();
         value = (int) map.get("value__");
