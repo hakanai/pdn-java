@@ -25,9 +25,7 @@ public class SystemClassWithMembers extends NrbfRecord {
     }
 
     public static SystemClassWithMembers readFrom(LittleEndianDataInputStream stream) throws IOException {
-        // TODO: Figure out how this is supposed to work.
-        throw new UnsupportedOperationException("Not supported yet, not sure how to fill in missing type info");
-        // ClassInfo classInfo = ClassInfo.readFrom(stream);
-        // return new SystemClassWithMembers(classInfo);
+        ClassInfo classInfo = ClassInfo.readFrom(stream);
+        return new SystemClassWithMembers(classInfo);
     }
 }

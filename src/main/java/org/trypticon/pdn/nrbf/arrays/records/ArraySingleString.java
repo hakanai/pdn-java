@@ -56,7 +56,7 @@ public class ArraySingleString extends NrbfArrayRecord<LengthPrefixedString> {
         ArrayInfo arrayInfo = ArrayInfo.readFrom(stream);
         List<LengthPrefixedString> members = new ArrayList<>(arrayInfo.getLength());
         for (int i = 0; i < arrayInfo.getLength(); i++) {
-            members.add(LengthPrefixedString.readFrom(stream));
+            //members.add(LengthPrefixedString.readFrom(stream));
         }
         return new ArraySingleString(arrayInfo, members);
     }
