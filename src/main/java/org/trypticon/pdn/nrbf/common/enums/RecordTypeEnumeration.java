@@ -134,7 +134,6 @@ public enum RecordTypeEnumeration {
 
     public static RecordTypeEnumeration readFrom(LittleEndianDataInputStream stream) throws IOException {
         byte b = stream.readByte();
-        System.out.println(b);
         return forValue(b);
     }
 }

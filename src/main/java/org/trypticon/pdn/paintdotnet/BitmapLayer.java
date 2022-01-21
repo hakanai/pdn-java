@@ -32,11 +32,12 @@ public class BitmapLayer extends Layer {
 
     @Override
     public BufferedImage toBufferedImage() {
-        BufferedImage image = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
-
         int width = surface.getWidth();
         int height = surface.getHeight();
         int stride = surface.getStride();
+
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
         ByteBuffer data = surface.getScan0().getData();
 
         int[] intArray = new int[width];
@@ -66,8 +67,8 @@ public class BitmapLayer extends Layer {
                     blendOp = new UserBlendOps.XorBlendOp(blendOpRecord);
                     break;
                 default:
-                    throw new UnsupportedOperationException("Unsupported blend op: " +
-                            blendOpRecord.getMetadata().getName());
+                    blendOp = new UserBlendOps.NormalBlendOp(blendOpRecord);
+                    break;
             }
         }
 
