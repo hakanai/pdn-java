@@ -1,5 +1,5 @@
 
-version = "0.1.1"
+version = "0.1.7"
 group = "org.trypticon.pdn"
 description = "Java implementation of the Paint.NET file format"
 
