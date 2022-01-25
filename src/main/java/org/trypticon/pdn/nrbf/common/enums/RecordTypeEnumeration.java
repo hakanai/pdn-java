@@ -1,12 +1,18 @@
 package org.trypticon.pdn.nrbf.common.enums;
 
-import com.google.common.io.LittleEndianDataInputStream;
-import org.trypticon.pdn.nrbf.NrbfException;
-
 import java.io.IOException;
 import java.util.Arrays;
 
+import com.google.common.io.LittleEndianDataInputStream;
+import org.trypticon.pdn.nrbf.NrbfException;
+import org.trypticon.pdn.nrbf.references.MemberPrimitiveUnTyped;
+
 /**
+ * Identifies the type of the record.
+ *
+ * Each record (except for {@link MemberPrimitiveUnTyped}) starts with a record type enumeration.
+ * The size of the enumeration is one byte.
+ *
  * [MS-NRBF] 2.1.2.1 RecordTypeEnumeration
  */
 @SuppressWarnings("UnstableApiUsage")
