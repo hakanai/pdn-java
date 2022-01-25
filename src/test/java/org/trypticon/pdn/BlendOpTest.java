@@ -49,6 +49,36 @@ public class BlendOpTest {
     }
 
     @Test
+    public void testOverlay() throws Exception {
+        commonTest("overlay");
+    }
+
+    @Test
+    public void testDifference() throws Exception {
+        commonTest("difference");
+    }
+
+    @Test
+    public void testNegation() throws Exception {
+        commonTest("negation");
+    }
+
+    @Test
+    public void testLighten() throws Exception {
+        commonTest("lighten");
+    }
+
+    @Test
+    public void testDarken() throws Exception {
+        commonTest("darken");
+    }
+
+    @Test
+    public void testScreen() throws Exception {
+        commonTest("screen");
+    }
+
+    @Test
     public void testXor() throws Exception {
         commonTest("xor");
     }

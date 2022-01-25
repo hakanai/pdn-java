@@ -4,7 +4,6 @@ import java.awt.*;
 import java.util.Map;
 
 import org.trypticon.pdn.nrbf.classes.NrbfClassRecord;
-import org.trypticon.pdn.paintdotnet.composite.*;
 
 /**
  * Stand-in for Paint.NET class {@code PaintDotNet.LayerBlendMode}.
@@ -34,29 +33,47 @@ public class LayerBlendMode {
      */
     public Composite createComposite() {
         switch (getValue()) {
-            case 0: // Normal
-                return AlphaComposite.SrcOver;
+            case 0: // Over (normal)
+                return GenericComposite.OVER;
 
             case 1: // Multiply
-                return MultiplyComposite.INSTANCE;
+                return GenericComposite.MULTIPLY;
 
             case 2: // Additive
-                return AdditiveComposite.INSTANCE;
+                return GenericComposite.ADDITIVE;
 
             case 3: // Color Burn
-                return ColorBurnComposite.INSTANCE;
+                return GenericComposite.COLOR_BURN;
 
             case 4: // Color Dodge
-                return ColorDodgeComposite.INSTANCE;
+                return GenericComposite.COLOR_DODGE;
 
             case 5: // Reflect
-                return ReflectComposite.INSTANCE;
+                return GenericComposite.REFLECT;
 
             case 6: // Glow
-                return GlowComposite.INSTANCE;
+                return GenericComposite.GLOW;
+
+            case 7: // Overlay
+                return GenericComposite.OVERLAY;
+
+            case 8: // Difference
+                return GenericComposite.DIFFERENCE;
+
+            case 9: // Negation
+                return GenericComposite.NEGATION;
+
+            case 10: // Lighten
+                return GenericComposite.LIGHTEN;
+
+            case 11: // Darken
+                return GenericComposite.DARKEN;
+
+            case 12: // Screen
+                return GenericComposite.SCREEN;
 
             case 13: // Xor
-                return XorComposite.INSTANCE;
+                return GenericComposite.XOR;
 
             default:
                 throw new UnsupportedOperationException("Unsupported blend mode: " + getValue());

@@ -51,6 +51,43 @@ public class UserBlendOps {
         }
     }
 
+    public static class OverlayBlendOp extends BlendOp {
+        public OverlayBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+    public static class DifferenceBlendOp extends BlendOp {
+        public DifferenceBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+    public static class NegationBlendOp extends BlendOp {
+        public NegationBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+    public static class LightenBlendOp extends BlendOp {
+        public LightenBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+    public static class DarkenBlendOp extends BlendOp {
+        public DarkenBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+    public static class ScreenBlendOp extends BlendOp {
+        public ScreenBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+
     public static class XorBlendOp extends BlendOp {
         public XorBlendOp(NrbfClassRecord record) {
             // no fields
