@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.Map;
 
 import org.trypticon.pdn.nrbf.classes.NrbfClassRecord;
+import org.trypticon.pdn.paintdotnet.composite.AdditiveComposite;
 import org.trypticon.pdn.paintdotnet.composite.MultiplyComposite;
 import org.trypticon.pdn.paintdotnet.composite.XorComposite;
 
@@ -40,6 +41,9 @@ public class LayerBlendMode {
 
             case 1: // Multiply
                 return MultiplyComposite.INSTANCE;
+
+            case 2: // Additive
+                return AdditiveComposite.INSTANCE;
 
             case 13: // Xor
                 return XorComposite.INSTANCE;

@@ -21,6 +21,12 @@ public class UserBlendOps {
         }
     }
 
+    public static class AdditiveBlendOp extends BlendOp {
+        public AdditiveBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
     public static class XorBlendOp extends BlendOp {
         public XorBlendOp(NrbfClassRecord record) {
             // no fields

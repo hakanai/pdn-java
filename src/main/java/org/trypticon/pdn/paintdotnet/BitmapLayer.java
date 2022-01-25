@@ -66,6 +66,9 @@ public class BitmapLayer extends Layer {
                 case "PaintDotNet.UserBlendOps+MultiplyBlendOp":
                     blendOp = new UserBlendOps.MultiplyBlendOp(blendOpRecord);
                     break;
+                case "PaintDotNet.UserBlendOps+AdditiveBlendOp":
+                    blendOp = new UserBlendOps.AdditiveBlendOp(blendOpRecord);
+                    break;
                 case "PaintDotNet.UserBlendOps+XorBlendOp":
                     blendOp = new UserBlendOps.XorBlendOp(blendOpRecord);
                     break;

@@ -24,6 +24,11 @@ public class BlendOpTest {
     }
 
     @Test
+    public void testAdditive() throws Exception {
+        commonTest("additive");
+    }
+
+    @Test
     public void testXor() throws Exception {
         commonTest("xor");
     }
