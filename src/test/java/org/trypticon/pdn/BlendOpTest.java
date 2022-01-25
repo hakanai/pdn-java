@@ -39,6 +39,16 @@ public class BlendOpTest {
     }
 
     @Test
+    public void testReflect() throws Exception {
+        commonTest("reflect");
+    }
+
+    @Test
+    public void testGlow() throws Exception {
+        commonTest("glow");
+    }
+
+    @Test
     public void testXor() throws Exception {
         commonTest("xor");
     }

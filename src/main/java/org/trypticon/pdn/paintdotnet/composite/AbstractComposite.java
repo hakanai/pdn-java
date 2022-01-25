@@ -73,6 +73,18 @@ abstract class AbstractComposite implements Composite, CompositeContext {
     }
 
     /**
+     * Divides the first value times 255 by the second value, both in the range 0 to 255,
+     * returning a new int value in the range 0 to 255.
+     *
+     * @param value1 the first value.
+     * @param value2 the second value.
+     * @return the result.
+     */
+    protected final int clampedDivide255(int value1, int value2) {
+        return clampedDivide(value1 * 255, value2);
+    }
+
+    /**
      * Divides the first value by the second value, both in the range 0 to 255,
      * returning a new int value in the range 0 to 255.
      *
@@ -86,7 +98,7 @@ abstract class AbstractComposite implements Composite, CompositeContext {
             return 255;
         }
 
-        return clamp((value1 * 255) / value2);
+        return clamp(value1 / value2);
     }
 
     private void checkRaster(Raster r) {

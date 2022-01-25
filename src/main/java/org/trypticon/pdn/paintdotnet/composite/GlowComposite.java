@@ -1,14 +1,14 @@
 package org.trypticon.pdn.paintdotnet.composite;
 
 /**
- * Custom composite operation for Color Burn.
+ * Custom composite operation for Glow.
  *
- * Divides the inverted bottom layer by the top layer, and then inverts the result.
+ * ???
  */
-public class ColorBurnComposite extends AbstractComposite {
-    public static final ColorBurnComposite INSTANCE = new ColorBurnComposite();
+public class GlowComposite extends AbstractComposite {
+    public static final GlowComposite INSTANCE = new GlowComposite();
 
-    private ColorBurnComposite() {
+    private GlowComposite() {
     }
 
     @Override
@@ -23,10 +23,10 @@ public class ColorBurnComposite extends AbstractComposite {
         int dstInA = dstInPixels[off + 3];
 
         // Blend logic here
-        int dstOutR = invert(clampedDivide255(invert(dstInR), srcR));
-        int dstOutG = invert(clampedDivide255(invert(dstInG), srcG));
-        int dstOutB = invert(clampedDivide255(invert(dstInB), srcB));
-        int dstOutA = invert(clampedDivide255(invert(dstInA), srcA));
+        int dstOutR = clampedDivide(srcR * srcR, invert(dstInR));
+        int dstOutG = clampedDivide(srcG * srcG, invert(dstInG));
+        int dstOutB = clampedDivide(srcB * srcB, invert(dstInB));
+        int dstOutA = clampedDivide(srcA * srcA, invert(dstInA));
 
         dstOutPixels[off] = dstOutR;
         dstOutPixels[off + 1] = dstOutG;

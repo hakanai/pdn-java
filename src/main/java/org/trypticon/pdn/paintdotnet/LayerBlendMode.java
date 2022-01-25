@@ -49,6 +49,12 @@ public class LayerBlendMode {
             case 4: // Color Dodge
                 return ColorDodgeComposite.INSTANCE;
 
+            case 5: // Reflect
+                return ReflectComposite.INSTANCE;
+
+            case 6: // Glow
+                return GlowComposite.INSTANCE;
+
             case 13: // Xor
                 return XorComposite.INSTANCE;
 

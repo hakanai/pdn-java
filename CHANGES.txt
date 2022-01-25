@@ -6,6 +6,8 @@
     - Additive
     - Color Burn
     - Color Dodge
+    - Reflect
+    - Glow
 - Support for `ClassWithMembers` and `SystemClassWithMembers` (thanks @dalgarins)
 - Bugfix: support for default blend mode when omitted (thanks @dalgarins)
 - Bugfix: get correct `BufferedImage` width and height (thanks @dalgarins)

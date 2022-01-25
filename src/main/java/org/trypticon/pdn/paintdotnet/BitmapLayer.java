@@ -60,6 +60,8 @@ public class BitmapLayer extends Layer {
                 .put("PaintDotNet.UserBlendOps+AdditiveBlendOp", UserBlendOps.AdditiveBlendOp::new)
                 .put("PaintDotNet.UserBlendOps+ColorBurnBlendOp", UserBlendOps.ColorBurnBlendOp::new)
                 .put("PaintDotNet.UserBlendOps+ColorDodgeBlendOp", UserBlendOps.ColorDodgeBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+ReflectBlendOp", UserBlendOps.ReflectBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+GlowBlendOp", UserBlendOps.GlowBlendOp::new)
                 .put("PaintDotNet.UserBlendOps+XorBlendOp", UserBlendOps.XorBlendOp::new)
                 .build();
 

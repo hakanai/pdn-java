@@ -39,6 +39,18 @@ public class UserBlendOps {
         }
     }
 
+    public static class ReflectBlendOp extends BlendOp {
+        public ReflectBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+    public static class GlowBlendOp extends BlendOp {
+        public GlowBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
     public static class XorBlendOp extends BlendOp {
         public XorBlendOp(NrbfClassRecord record) {
             // no fields

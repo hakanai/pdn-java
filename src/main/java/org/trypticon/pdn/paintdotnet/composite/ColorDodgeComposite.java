@@ -23,10 +23,10 @@ public class ColorDodgeComposite extends AbstractComposite {
         int dstInA = dstInPixels[off + 3];
 
         // Blend logic here
-        int dstOutR = clampedDivide(dstInR, invert(srcR));
-        int dstOutG = clampedDivide(dstInG, invert(srcG));
-        int dstOutB = clampedDivide(dstInB, invert(srcB));
-        int dstOutA = clampedDivide(dstInA, invert(srcA));
+        int dstOutR = clampedDivide255(dstInR, invert(srcR));
+        int dstOutG = clampedDivide255(dstInG, invert(srcG));
+        int dstOutB = clampedDivide255(dstInB, invert(srcB));
+        int dstOutA = clampedDivide255(dstInA, invert(srcA));
 
         dstOutPixels[off] = dstOutR;
         dstOutPixels[off + 1] = dstOutG;
