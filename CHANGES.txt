@@ -1,4 +1,8 @@
 
+?
+
+- Changed source/target compatibility to Java 11
+
 v0.1.1
 
 - Added Xor blend mode
