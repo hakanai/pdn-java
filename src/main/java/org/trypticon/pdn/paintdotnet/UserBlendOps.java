@@ -15,6 +15,12 @@ public class UserBlendOps {
         }
     }
 
+    public static class MultiplyBlendOp extends BlendOp {
+        public MultiplyBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
     public static class XorBlendOp extends BlendOp {
         public XorBlendOp(NrbfClassRecord record) {
             // no fields
