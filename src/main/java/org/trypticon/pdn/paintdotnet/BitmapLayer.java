@@ -1,12 +1,12 @@
 package org.trypticon.pdn.paintdotnet;
 
-import org.trypticon.pdn.nrbf.classes.NrbfClassRecord;
-
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.Map;
+
+import org.trypticon.pdn.nrbf.classes.NrbfClassRecord;
 
 /**
  * Stand-in for Paint.NET class {@code PaintDotNet.BitmapLayer}.
@@ -32,11 +32,12 @@ public class BitmapLayer extends Layer {
 
     @Override
     public BufferedImage toBufferedImage() {
-        BufferedImage image = new BufferedImage(512, 512, BufferedImage.TYPE_INT_ARGB);
-
         int width = surface.getWidth();
         int height = surface.getHeight();
         int stride = surface.getStride();
+
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
         ByteBuffer data = surface.getScan0().getData();
 
         int[] intArray = new int[width];

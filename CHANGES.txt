@@ -2,8 +2,9 @@
 ?
 
 - Changed source/target compatibility to Java 11
+- Support for `ClassWithMembers` and `SystemClassWithMembers` (thanks @dalgarins)
 - Bugfix: support for default blend mode when omitted (thanks @dalgarins)
-- Support for ClassWithMembers and SystemClassWithMembers (thanks @dalgarins)
+- Bugfix: get correct `BufferedImage` width and height (thanks @dalgarins)
 
 v0.1.1
 
