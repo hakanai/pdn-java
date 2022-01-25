@@ -4,9 +4,7 @@ import java.awt.*;
 import java.util.Map;
 
 import org.trypticon.pdn.nrbf.classes.NrbfClassRecord;
-import org.trypticon.pdn.paintdotnet.composite.AdditiveComposite;
-import org.trypticon.pdn.paintdotnet.composite.MultiplyComposite;
-import org.trypticon.pdn.paintdotnet.composite.XorComposite;
+import org.trypticon.pdn.paintdotnet.composite.*;
 
 /**
  * Stand-in for Paint.NET class {@code PaintDotNet.LayerBlendMode}.
@@ -44,6 +42,12 @@ public class LayerBlendMode {
 
             case 2: // Additive
                 return AdditiveComposite.INSTANCE;
+
+            case 3: // Color Burn
+                return ColorBurnComposite.INSTANCE;
+
+            case 4: // Color Dodge
+                return ColorDodgeComposite.INSTANCE;
 
             case 13: // Xor
                 return XorComposite.INSTANCE;

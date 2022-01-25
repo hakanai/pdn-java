@@ -27,7 +27,7 @@ public class MultiplyComposite extends AbstractComposite {
         int dstOutR = (srcR * dstInR) / 255;
         int dstOutG = (srcG * dstInG) / 255;
         int dstOutB = (srcB * dstInB) / 255;
-        int dstOutA = Math.min(255, srcA + dstInA);
+        int dstOutA = clamp(srcA + dstInA);
 
         dstOutPixels[off] = dstOutR;
         dstOutPixels[off + 1] = dstOutG;

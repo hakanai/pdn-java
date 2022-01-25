@@ -1,16 +1,14 @@
 package org.trypticon.pdn.paintdotnet.composite;
 
-import java.awt.AlphaComposite;
-
 /**
- * Custom composite operation for XOR.
+ * Custom composite operation for Color Burn.
  *
- * Because {@link AlphaComposite#Xor} somehow gives the wrong result compared to Paint.NET.
+ * Divides the inverted bottom layer by the top layer, and then inverts the result.
  */
-public class XorComposite extends AbstractComposite {
-    public static final XorComposite INSTANCE = new XorComposite();
+public class ColorBurnComposite extends AbstractComposite {
+    public static final ColorBurnComposite INSTANCE = new ColorBurnComposite();
 
-    private XorComposite() {
+    private ColorBurnComposite() {
     }
 
     @Override
@@ -25,10 +23,10 @@ public class XorComposite extends AbstractComposite {
         int dstInA = dstInPixels[off + 3];
 
         // Blend logic here
-        int dstOutR = dstInR ^ srcR;
-        int dstOutG = dstInG ^ srcG;
-        int dstOutB = dstInB ^ srcB;
-        int dstOutA = clamp(srcA + dstInA - (srcA * dstInA) / 255);
+        int dstOutR = invert(clampedDivide(invert(dstInR), srcR));
+        int dstOutG = invert(clampedDivide(invert(dstInG), srcG));
+        int dstOutB = invert(clampedDivide(invert(dstInB), srcB));
+        int dstOutA = invert(clampedDivide(invert(dstInA), srcA));
 
         dstOutPixels[off] = dstOutR;
         dstOutPixels[off + 1] = dstOutG;

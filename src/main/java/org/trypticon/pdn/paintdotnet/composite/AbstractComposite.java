@@ -50,6 +50,45 @@ abstract class AbstractComposite implements Composite, CompositeContext {
      */
     protected abstract void mixPixels(int[] srcPixels, int[] dstInPixels, int[] dstOutPixels, int off);
 
+    /**
+     * Clamps a value to the range 0 to 255 (inclusive).
+     *
+     * For use by subclasses in {@link #mixPixels(int[], int[], int[], int)}.
+     *
+     * @param value the value.
+     * @return the clamped value.
+     */
+    protected final int clamp(int value) {
+        return Math.max(0, Math.min(255, value));
+    }
+
+    /**
+     * Inverts an int value in the range 0 to 255.
+     *
+     * @param value the value.
+     * @return the inverted value.
+     */
+    protected final int invert(int value) {
+        return 255 - value;
+    }
+
+    /**
+     * Divides the first value by the second value, both in the range 0 to 255,
+     * returning a new int value in the range 0 to 255.
+     *
+     * @param value1 the first value.
+     * @param value2 the second value.
+     * @return the result.
+     */
+    protected final int clampedDivide(int value1, int value2) {
+        // Division by zero dodge
+        if (value2 == 0) {
+            return 255;
+        }
+
+        return clamp((value1 * 255) / value2);
+    }
+
     private void checkRaster(Raster r) {
         if (r.getSampleModel().getDataType() != DataBuffer.TYPE_INT) {
             throw new IllegalArgumentException("Expected integer sample type");

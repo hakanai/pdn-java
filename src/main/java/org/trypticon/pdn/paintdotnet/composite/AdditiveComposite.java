@@ -24,10 +24,10 @@ public class AdditiveComposite extends AbstractComposite {
         int dstInA = dstInPixels[off + 3];
 
         // Blend logic here
-        int dstOutR = Math.min(255, srcR + dstInR);
-        int dstOutG = Math.min(255, srcG + dstInG);
-        int dstOutB = Math.min(255, srcB + dstInB);
-        int dstOutA = Math.min(255, srcA + dstInA);
+        int dstOutR = clamp(srcR + dstInR);
+        int dstOutG = clamp(srcG + dstInG);
+        int dstOutB = clamp(srcB + dstInB);
+        int dstOutA = clamp(srcA + dstInA);
 
         dstOutPixels[off] = dstOutR;
         dstOutPixels[off + 1] = dstOutG;

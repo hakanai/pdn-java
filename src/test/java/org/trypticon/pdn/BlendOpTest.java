@@ -29,6 +29,16 @@ public class BlendOpTest {
     }
 
     @Test
+    public void testColorBurn() throws Exception {
+        commonTest("color-burn");
+    }
+
+    @Test
+    public void testColorDodge() throws Exception {
+        commonTest("color-dodge");
+    }
+
+    @Test
     public void testXor() throws Exception {
         commonTest("xor");
     }

@@ -27,6 +27,18 @@ public class UserBlendOps {
         }
     }
 
+    public static class ColorBurnBlendOp extends BlendOp {
+        public ColorBurnBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
+    public static class ColorDodgeBlendOp extends BlendOp {
+        public ColorDodgeBlendOp(NrbfClassRecord record) {
+            // no fields
+        }
+    }
+
     public static class XorBlendOp extends BlendOp {
         public XorBlendOp(NrbfClassRecord record) {
             // no fields
