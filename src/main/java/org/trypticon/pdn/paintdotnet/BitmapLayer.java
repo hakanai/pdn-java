@@ -1,12 +1,13 @@
 package org.trypticon.pdn.paintdotnet;
 
-import org.trypticon.pdn.nrbf.classes.NrbfClassRecord;
-
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
+import org.trypticon.pdn.nrbf.classes.NrbfClassRecord;
 
 /**
  * Stand-in for Paint.NET class {@code PaintDotNet.BitmapLayer}.
@@ -52,28 +53,44 @@ public class BitmapLayer extends Layer {
     }
 
     public static class BitmapLayerProperties {
+        private static final ImmutableMap<String, BlendOpFactory> factoryMap = ImmutableMap
+                .<String, BlendOpFactory>builder()
+                .put("PaintDotNet.UserBlendOps+NormalBlendOp", UserBlendOps.NormalBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+MultiplyBlendOp", UserBlendOps.MultiplyBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+AdditiveBlendOp", UserBlendOps.AdditiveBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+ColorBurnBlendOp", UserBlendOps.ColorBurnBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+ColorDodgeBlendOp", UserBlendOps.ColorDodgeBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+ReflectBlendOp", UserBlendOps.ReflectBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+GlowBlendOp", UserBlendOps.GlowBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+OverlayBlendOp", UserBlendOps.OverlayBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+DifferenceBlendOp", UserBlendOps.DifferenceBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+NegationBlendOp", UserBlendOps.NegationBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+LightenBlendOp", UserBlendOps.LightenBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+DarkenBlendOp", UserBlendOps.DarkenBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+ScreenBlendOp", UserBlendOps.ScreenBlendOp::new)
+                .put("PaintDotNet.UserBlendOps+XorBlendOp", UserBlendOps.XorBlendOp::new)
+                .build();
+
         private final UserBlendOps.BlendOp blendOp;
 
         public BitmapLayerProperties(NrbfClassRecord record) {
             Map<String, Object> map = record.asMap();
             NrbfClassRecord blendOpRecord = (NrbfClassRecord) map.get("blendOp");
 
-            // XXX: A factory pattern should be put in place here.
-            switch (blendOpRecord.getMetadata().getName()) {
-                case "PaintDotNet.UserBlendOps+NormalBlendOp":
-                    blendOp = new UserBlendOps.NormalBlendOp(blendOpRecord);
-                    break;
-                case "PaintDotNet.UserBlendOps+XorBlendOp":
-                    blendOp = new UserBlendOps.XorBlendOp(blendOpRecord);
-                    break;
-                default:
-                    blendOp = new UserBlendOps.NormalBlendOp(blendOpRecord);
-                    break;
+            String blendOpName = blendOpRecord.getMetadata().getName();
+            BlendOpFactory blendOpFactory = factoryMap.get(blendOpName);
+            if (blendOpFactory == null) {
+                throw new UnsupportedOperationException("Unsupported blend op: " + blendOpName);
             }
+            blendOp = blendOpFactory.create(blendOpRecord);
         }
 
         public UserBlendOps.BlendOp getBlendOp() {
             return blendOp;
         }
+    }
+
+    private interface BlendOpFactory {
+        UserBlendOps.BlendOp create(NrbfClassRecord blendOpRecord);
     }
 }

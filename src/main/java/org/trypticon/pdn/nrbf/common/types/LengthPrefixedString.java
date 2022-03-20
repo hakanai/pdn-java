@@ -1,14 +1,20 @@
 package org.trypticon.pdn.nrbf.common.types;
 
-import com.google.common.io.LittleEndianDataInputStream;
-import org.trypticon.pdn.nrbf.NrbfException;
-import org.trypticon.pdn.nrbf.PrimitiveType;
-
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
+import com.google.common.io.LittleEndianDataInputStream;
+import org.trypticon.pdn.nrbf.NrbfException;
+import org.trypticon.pdn.nrbf.PrimitiveType;
+
 /**
+ * Represents a string value.
+ *
+ * The string is prefixed by the length of the UTF-8 encoded string in bytes.
+ * To minimize the wire size, length is encoded as a variable-length field
+ * with a minimum of 1 byte and a maximum of 5 bytes.
+ *
  * [MS-NRBF] 2.1.1.6 LengthPrefixedString
  */
 @SuppressWarnings("UnstableApiUsage")
