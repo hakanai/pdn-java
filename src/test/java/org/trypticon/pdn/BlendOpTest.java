@@ -1,11 +1,12 @@
 package org.trypticon.pdn;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
+import javax.imageio.ImageIO;
+
 import com.google.common.io.Resources;
 import org.junit.Test;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -15,6 +16,66 @@ public class BlendOpTest {
     @Test
     public void testNormal() throws Exception {
         commonTest("normal");
+    }
+
+    @Test
+    public void testMultiply() throws Exception {
+        commonTest("multiply");
+    }
+
+    @Test
+    public void testAdditive() throws Exception {
+        commonTest("additive");
+    }
+
+    @Test
+    public void testColorBurn() throws Exception {
+        commonTest("color-burn");
+    }
+
+    @Test
+    public void testColorDodge() throws Exception {
+        commonTest("color-dodge");
+    }
+
+    @Test
+    public void testReflect() throws Exception {
+        commonTest("reflect");
+    }
+
+    @Test
+    public void testGlow() throws Exception {
+        commonTest("glow");
+    }
+
+    @Test
+    public void testOverlay() throws Exception {
+        commonTest("overlay");
+    }
+
+    @Test
+    public void testDifference() throws Exception {
+        commonTest("difference");
+    }
+
+    @Test
+    public void testNegation() throws Exception {
+        commonTest("negation");
+    }
+
+    @Test
+    public void testLighten() throws Exception {
+        commonTest("lighten");
+    }
+
+    @Test
+    public void testDarken() throws Exception {
+        commonTest("darken");
+    }
+
+    @Test
+    public void testScreen() throws Exception {
+        commonTest("screen");
     }
 
     @Test
@@ -30,13 +91,19 @@ public class BlendOpTest {
         URL pngResource = Resources.getResource("org/trypticon/pdn/blendop-" + mode + ".png");
         BufferedImage pngImage = ImageIO.read(pngResource);
 
-        assertThat(pdnImage.getWidth(), is(pngImage.getWidth()));
-        assertThat(pdnImage.getHeight(), is(pngImage.getHeight()));
+        try {
+            assertThat(pdnImage.getWidth(), is(pngImage.getWidth()));
+            assertThat(pdnImage.getHeight(), is(pngImage.getHeight()));
 
-        for (int y = 0; y < pdnImage.getHeight(); y++) {
-            for (int x = 0; x < pdnImage.getWidth(); x++) {
-                assertThat(pdnImage.getRGB(x, y), is(pngImage.getRGB(x, y)));
+            for (int y = 0; y < pdnImage.getHeight(); y++) {
+                for (int x = 0; x < pdnImage.getWidth(); x++) {
+                    assertThat("pixel at " + x + "," + y,
+                            pdnImage.getRGB(x, y), is(pngImage.getRGB(x, y)));
+                }
             }
+        } catch (AssertionError e) {
+            ImageIO.write(pdnImage, "PNG", new File("fail-" + mode + ".png"));
+            throw e;
         }
     }
 }
